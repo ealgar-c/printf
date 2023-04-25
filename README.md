@@ -3,17 +3,17 @@ porque putnbr() y putstr() no son suficientes
 
 PROYECTO BASE:
 
-![](https://geps.dev/progress/0)
+![](https://geps.dev/progress/10)
 
-|		proyecto	|	estado	|	norme	|	francinette	|
-|		---			|	---		|	---		|		---		|
-|	función base	|	---		|	---		|		---		|
-|		%c			|	---		|	---		|		---		|
-|		%s			|	---		|	---		|		---		|
-|		%p			|	---		|	---		|		---		|
-|		%d			|	---		|	---		|		---		|
-|		%i			|	---		|	---		|		---		|
-|		%u			|	---		|	---		|		---		|
-|		%x			|	---		|	---		|		---		|
-|		%X			|	---		|	---		|		---		|
-|		%%			|	---		|	---		|		---		|
+|		proyecto	|	estado	|	francinette	|
+|		---			|	---		|		---		|
+|	función base	|	done	|		---		|
+|		%c			|	done	|		---		|
+|		%s			|	---		|		---		|
+|		%p			|	---		|		---		|
+|		%d			|	---		|		---		|
+|		%i			|	---		|		---		|
+|		%u			|	---		|		---		|
+|		%x			|	---		|		---		|
+|		%X			|	---		|		---		|
+|		%%			|	---		|		---		|
