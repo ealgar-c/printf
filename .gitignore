@@ -1,3 +1,6 @@
+# Mac thrash files
+.DS_Store
+
 # Prerequisites
 *.d
 
