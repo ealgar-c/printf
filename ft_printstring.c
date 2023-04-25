@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printchar.c                                     :+:      :+:    :+:   */
+/*   ft_printstring.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/25 17:27:34 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/04/25 19:23:02 by ealgar-c         ###   ########.fr       */
+/*   Created: 2023/04/25 18:58:28 by ealgar-c          #+#    #+#             */
+/*   Updated: 2023/04/25 19:29:45 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printchar(char c)
+int	ft_printstring(char *str)
 {
-	ft_putchar(c);
-	return (1);
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (ft_printstring("(null)"));
+	while (str[i])
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
+	return (i);
 }

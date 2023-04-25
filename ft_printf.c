@@ -6,103 +6,62 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 14:57:56 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/04/25 18:20:24 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:23:02 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <unistd.h>
+#include "ft_printf.h"
 
-void	ft_putchar(char c)
+static int	ft_filter(char const *content, int i, va_list *args)
 {
-	write(1, &c, 1);
-}
+	int	filtrated_c;
 
-void	ft_printstring(char c)
-{
-	ft_putchar(c);
-}
-
-void	ft_printptr(char c)
-{
-	ft_putchar(c);
-}
-
-void	ft_printdec(char c)
-{
-	ft_putchar(c);
-}
-
-void	ft_printunsigned(char c)
-{
-	ft_putchar(c);
-}
-
-void	ft_printhexminus(char c)
-{
-	ft_putchar(c);
-}
-
-void	ft_printhexmayus(char c)
-{
-	ft_putchar(c);
-}
-
-void	ft_printperc(char c)
-{
-	ft_putchar(c);
-}
-
-void	ft_filter(char const *content, int i, va_list *args)
-{
+	filtrated_c = 0;
 	if (content[i] == 'c')
-		ft_printchar(va_arg(*args, int));
- 	if (content[i] == 's')
-		ft_printstring(*args, char *);
+		filtrated_c += ft_printchar(va_arg(*args, int));
+	if (content[i] == 's')
+		filtrated_c += ft_printstring(va_arg(*args, char *));
 	if (content[i] == 'p')
-		ft_printptr('x');
+		filtrated_c += ft_printptr('x');
 	if (content[i] == 'd')
-		ft_printdec('x');
+		filtrated_c += ft_printdec(va_arg(*args, int));
 	if (content[i] == 'i')
-		ft_printdec('x');
+		filtrated_c += ft_printdec(va_arg(*args, int));
 	if (content[i] == 'u')
-		ft_printunsigned('x');
+		filtrated_c += ft_printunsigned(va_arg(*args, unsigned int));
 	if (content[i] == 'x')
-		ft_printhexminus('x');
+		filtrated_c += ft_printhexminus('x');
 	if (content[i] == 'X')
-		ft_printhexmayus('x');
+		filtrated_c += ft_printhexmayus('x');
 	if (content[i] == '%')
-		ft_printperc('x');
+		filtrated_c += ft_putchar('%');
+	return (filtrated_c);
 }
 
-void	ft_printf(char const *content, ...)
+int	ft_printf(char const *content, ...)
 {
 	va_list	args;
 	int		i;
+	int		c;
 
 	i = 0;
+	c = 0;
 	va_start(args, content);
 	while (content[i])
 	{
 		if (content[i] != '%')
 		{
-			ft_putchar(content[i]);
+			c += ft_putchar(content[i]);
 		}
 		else
 		{
 			i++;
-			ft_filter(content, i, &args);
+			c += ft_filter(content, i, &args);
 		}
 		i++;
 	}
 	va_end(args);
-}
-
-int	main(void)
-{
-	char	c;
-
-	c = 'X';
-	ft_printf("hol%ca que tal%c", c, c);
-	return (0);
+	return (c);
 }
