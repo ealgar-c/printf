@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printunsigned.c                                 :+:      :+:    :+:   */
+/*   ft_printhexa.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/25 18:59:47 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/04/26 11:42:41 by ealgar-c         ###   ########.fr       */
+/*   Created: 2023/04/25 19:00:11 by ealgar-c          #+#    #+#             */
+/*   Updated: 2023/04/26 17:02:53 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printunsigned(unsigned int uns)
+int	ft_printhexa(unsigned long long n, char c)
 {
-	int	c;
+	unsigned long long	count;
 
-	c = 0;
-	if (uns >= 10)
-		c += ft_printunsigned(uns / 10);
-	ft_putchar(uns % 10 + '0');
-	c++;
-	return (c);
+	count = 0;
+	if (n >= 16)
+		count += ft_printhexa(n / 16, c);
+	if (c == 'x')
+		ft_putchar("0123456789abcdef"[n % 16]);
+	else if (c == 'X')
+		ft_putchar("0123456789ABCDEF"[n % 16]);
+	count++;
+	return (count);
 }

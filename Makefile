@@ -3,8 +3,7 @@ NAME = libftprintf.a
 SOURCE = ft_printchar.c\
 		ft_printdec.c\
 		ft_printf.c\
-		ft_printhexmayus.c\
-		ft_printhexminus.c\
+		ft_printhexa.c\
 		ft_printptr.c\
 		ft_printstring.c\
 		ft_printunsigned.c\

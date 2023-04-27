@@ -6,7 +6,7 @@
 /*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 14:57:56 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/04/25 19:23:02 by ealgar-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:59:31 by ealgar-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_filter(char const *content, int i, va_list *args)
 	if (content[i] == 's')
 		filtrated_c += ft_printstring(va_arg(*args, char *));
 	if (content[i] == 'p')
-		filtrated_c += ft_printptr('x');
+		filtrated_c += ft_printptr(va_arg(*args, unsigned long long));
 	if (content[i] == 'd')
 		filtrated_c += ft_printdec(va_arg(*args, int));
 	if (content[i] == 'i')
@@ -32,9 +32,9 @@ static int	ft_filter(char const *content, int i, va_list *args)
 	if (content[i] == 'u')
 		filtrated_c += ft_printunsigned(va_arg(*args, unsigned int));
 	if (content[i] == 'x')
-		filtrated_c += ft_printhexminus('x');
+		filtrated_c += ft_printhexa(va_arg(*args, unsigned int), 'x');
 	if (content[i] == 'X')
-		filtrated_c += ft_printhexmayus('x');
+		filtrated_c += ft_printhexa(va_arg(*args, unsigned int), 'X');
 	if (content[i] == '%')
 		filtrated_c += ft_putchar('%');
 	return (filtrated_c);
@@ -52,9 +52,7 @@ int	ft_printf(char const *content, ...)
 	while (content[i])
 	{
 		if (content[i] != '%')
-		{
 			c += ft_putchar(content[i]);
-		}
 		else
 		{
 			i++;
