@@ -1,6 +1,3 @@
-# printf
-porque putnbr() y putstr() no son suficientes
-
 <div align="center">
 	<h1> ft_printf </h1>
 	<p>porque putnbr() y putstr() no son suficientes</p>
