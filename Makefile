@@ -1,6 +1,7 @@
 NAME = libftprintf.a
 
-SOURCE = ft_printchar.c\
+SRC_DIR = src/
+SRC =	ft_printchar.c\
 		ft_printdec.c\
 		ft_printf.c\
 		ft_printhexa.c\
@@ -9,24 +10,27 @@ SOURCE = ft_printchar.c\
 		ft_printunsigned.c\
 		ft_putchar.c
 
-OBJ = $(SOURCE:.c=.o)
+OBJ_DIR = objs/
+OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I ./include
 
 LIB = ar rcs
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(LIB) $(NAME) $(OBJ)
+	@ $(LIB) $(NAME) $(OBJ)
 
-$(OBJ): $(SOURCE)
-	$(CC) $(CFLAGS) -c $(SOURCE)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@ mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)

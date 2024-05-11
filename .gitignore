@@ -1,6 +1,6 @@
-# Mac thrash files
+libftprintf.a
 .DS_Store
-
+objs/
 # Prerequisites
 *.d
 
