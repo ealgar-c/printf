@@ -1,4 +1,5 @@
 NAME = libftprintf.a
+NAME_b = libftprintf_bonus.a
 
 SRC_DIR = src/
 SRC =	ft_printchar.c\
@@ -13,9 +14,15 @@ SRC =	ft_printchar.c\
 OBJ_DIR = objs/
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
+SRC_DIR_B = src_bonus/
+SRC_B =	ft_printf_bonus.c
+
+OBJ_DIR_B = objs_bonus/
+OBJ_B = $(addprefix $(OBJ_DIR_B), $(SRC_b:.c=.o))
+
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -I ./include
+CFLAGS = -Wall -Wextra -Werror
 
 LIB = ar rcs
 
@@ -26,7 +33,16 @@ $(NAME): $(OBJ)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@ mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -I ./include -c $< -o $@
+
+bonus: $(NAME_B)
+
+$(NAME_B): $(OBJ_B)
+	@ $(LIB) $(NAME_B) $(OBJ_B)
+
+$(OBJ_DIR_B)%.o: $(SRC_DIR_B)%.c
+	@ mkdir -p $(OBJ_DIR_B)
+	$(CC) $(CFLAGS) -I ./include_bonus -c $< -o $@
 
 
 clean:
@@ -37,4 +53,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: re all clean fclean
+.PHONY: re all clean fclean bonus
